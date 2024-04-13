@@ -14,13 +14,15 @@ import stu72159.example.movieapp.UI.MovieDetail
 import com.example.movieapp.databinding.MovieItemBinding
 import kotlin.random.Random
 
-class MovieAdapter (private val movies: List<MovieData>, private val context:Context):RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+class MovieAdapter(private val movies: List<MovieData>, private val context: Context) :
+    RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     companion object {
         const val REQUEST_CODE_MOVIE_DETAIL = 1001
-        var itemposition=0
-        var randomno=0
+        var itemposition = 0
+        var randomno = 0
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = MovieItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(binding)
@@ -28,10 +30,7 @@ class MovieAdapter (private val movies: List<MovieData>, private val context:Con
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val movie = movies[position]
-
-        holder.bind(movie)
-
-
+        holder.bind(movie, position)
     }
 
     override fun getItemCount(): Int {
@@ -41,28 +40,23 @@ class MovieAdapter (private val movies: List<MovieData>, private val context:Con
     inner class ViewHolder(val binding: MovieItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-
-        fun bind(movie: MovieData) {
+        fun bind(movie: MovieData, position: Int) {
             binding.apply {
 
-                randomno =Random.nextInt(1, 16)
+                randomno = Random.nextInt(1, 16)
 
-                if (randomno <3)
-                {
-                    cardlayout.visibility=View.VISIBLE
-                }
-                else
-                {
-                    cardlayout.visibility=View.GONE
+                if (randomno < 3) {
+                    cardlayout.visibility = View.VISIBLE
+                } else {
+                    cardlayout.visibility = View.GONE
                 }
 
                 titletv.text = movie.title
                 overviewtv.text = movie.overview
                 runtime.text = movie.runtime
-                availableSeats.text="Available Seats: $randomno"
-                selectedseat.text="Selected Seats: 0"
+                availableSeats.text = "Available Seats: $randomno"
+                selectedseat.text = "Selected Seats: 0"
 
-//
                 // Load poster image using Glide (or any other image loading library)
                 Glide.with(itemView.context)
                     .load(movie.posterurl)
@@ -70,23 +64,20 @@ class MovieAdapter (private val movies: List<MovieData>, private val context:Con
 
                 itemView.setOnClickListener {
 
-                    itemposition =adapterPosition
+                    itemposition = adapterPosition
 
-                    Log.d("itempos: ",adapterPosition.toString()+" c")
-                        val intent=Intent(context, MovieDetail::class.java)
-                        intent.putExtra("moviename",movie.title)
-                        intent.putExtra("image",movie.posterurl)
-                        intent.putExtra("desc",movie.overview)
-                        intent.putExtra("availableSeats",availableSeats.text.toString())
-                        intent.putExtra("selectedseats",selectedseat.text.toString())
-
+                    Log.d("itempos: ", adapterPosition.toString() + " c")
+                    val intent = Intent(context, MovieDetail::class.java)
+                    intent.putExtra("moviename", movie.title)
+                    intent.putExtra("image", movie.posterurl)
+                    intent.putExtra("desc", movie.overview)
+                    intent.putExtra("availableseats", "Available Seats: $randomno")
+                    intent.putExtra("selectedseats", "Selected Seats: 0")
 
                     (context as Activity).startActivityForResult(intent, REQUEST_CODE_MOVIE_DETAIL)
 
-                    }
                 }
             }
-
-
         }
     }
+}

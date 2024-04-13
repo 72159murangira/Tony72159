@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:paddingHorizontal="10dp"
-    android:background="#AE2D24"
+    android:background="#0B1A6A"
     tools:context="stu72159.example.movieapp.UI.MovieDetail">
 
 
@@ -14,16 +14,17 @@
         android:layout_width="match_parent"
         android:layout_height="400dp"
         android:layout_margin="10dp"
-        android:layout_centerVertical="true"
         android:src="@android:drawable/checkbox_on_background"
-        android:id="@+id/posterimg"/>
+        android:id="@+id/posterimg"
+        android:contentDescription="main pic"
+        tools:ignore="HardcodedText" />
     <TextView
         android:id="@+id/titletv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:text="Title"
+        android:text="@string/title"
         android:textSize="40sp"
         android:textStyle="bold"
         android:textColor="#FFFFFF"/>
@@ -46,26 +47,27 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:src="@drawable/plus_icon1"
-            />
+            android:contentDescription="@string/plus_button" />
 
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="RelativeOverlap">
 
             <TextView
                 android:id="@+id/selectedseats"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Selected Seats: "
+                android:text="@string/selected_seats"
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textColor="#FFFFFF"/>
             <TextView
-                android:id="@+id/availableseats"
+                android:id="@+id/availableSeats"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="available Seats: "
@@ -83,7 +85,8 @@
             android:layout_height="50dp"
             android:layout_alignParentEnd="true"
             android:src="@drawable/minus_icon2"
-            />
+            android:contentDescription="TODO"
+            tools:ignore="ContentDescription,HardcodedText" />
     </RelativeLayout>
 
 

@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">MovieApp</string>
+    <string name="selected_seats">Selected Seats:</string>
+    <string name="title">Title</string>
+    <string name="plus_button">plus button</string>
 </resources>

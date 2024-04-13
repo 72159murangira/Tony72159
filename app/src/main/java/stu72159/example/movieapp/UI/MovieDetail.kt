@@ -15,7 +15,7 @@ class MovieDetail : AppCompatActivity() {
     private var moviename:String?=null
     private var postimg:String?=null
     private var desc:String?=null
-    private var available_seats:String?=null
+    private var availableSeats:String?=null
     private var selectedSeats:String?=null
     companion object
     {
@@ -32,11 +32,12 @@ class MovieDetail : AppCompatActivity() {
         postimg=intent.getStringExtra("image")
         desc=intent.getStringExtra("desc")
 
-        available_seats=intent.getStringExtra("availableseats")
+        availableSeats=intent.getStringExtra("availableseats")
         selectedSeats=intent.getStringExtra("selectedseats")
 
 
-        available_count = available_seats!!.replace(Regex("[^0-9]"), "").toIntOrNull()!!
+        available_count = availableSeats?.replace(Regex("[^0-9]"), "")?.toIntOrNull() ?: 0
+
 
         binding.plusbtn.setOnClickListener {
             if (available_count >0)
@@ -44,9 +45,15 @@ class MovieDetail : AppCompatActivity() {
                 selected_count++
                 available_count--
             }
+            else
+            {
+                Toast.makeText(this@MovieDetail, "No more seats available!", Toast.LENGTH_LONG).show()
+            }
+
+
 
             binding.selectedseats.text="Selected Seats: $selected_count"
-            binding.availableseats.text="available Seats: $available_count"
+            binding.availableSeats.text="Available Seats: $available_count"
         }
         binding.minusbtn.setOnClickListener {
             if (selected_count >0)
@@ -56,14 +63,15 @@ class MovieDetail : AppCompatActivity() {
             }
             else
             {
-                Toast.makeText(this@MovieDetail,"Seats Can't be Negative!",Toast.LENGTH_LONG).show()
+                Toast.makeText(this@MovieDetail,"Click on PLUS icon to select seats",Toast.LENGTH_LONG).show()
             }
-            binding.selectedseats.text="Selected Seats: $selected_count"
-            binding.availableseats.text="available Seats: $available_count"
+            binding.selectedseats.text = "Selected Seats: $selectedSeats"
+            binding.availableSeats.text = "Available Seats: $availableSeats"
+
         }
 
         binding.selectedseats.text=selectedSeats
-        binding.availableseats.text=available_seats
+        binding.availableSeats.text=availableSeats
         Glide.with(this@MovieDetail)
             .load(postimg)
             .into(binding.posterimg

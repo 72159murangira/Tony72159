@@ -63,7 +63,7 @@ class AllMovies : AppCompatActivity() {
             // You can access the ViewHolder of the clicked item using findViewHolderForAdapterPosition
             val viewHolder = binding.rvMovies.findViewHolderForAdapterPosition(itemposition)
             if (viewHolder is MovieAdapter.ViewHolder) {
-                viewHolder.binding.availableSeats.text = "available Seats: $modifiedavailableSeats"
+                viewHolder.binding.availableSeats.text = "Available Seats: $modifiedavailableSeats"
                 viewHolder.binding.selectedseat.text = "Selected Seats: $modifiedSelectedSeats"
 
             }
