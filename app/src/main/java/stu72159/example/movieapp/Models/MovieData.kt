@@ -6,4 +6,6 @@ data class MovieData (
     val runtime: String,
     val posterurl: String,
     val price: Int
-)
+) {
+    lateinit var availableSeats: String
+}

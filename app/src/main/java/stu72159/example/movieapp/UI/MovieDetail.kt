@@ -65,8 +65,8 @@ class MovieDetail : AppCompatActivity() {
             {
                 Toast.makeText(this@MovieDetail,"Click on PLUS icon to select seats",Toast.LENGTH_LONG).show()
             }
-            binding.selectedseats.text = "Selected Seats: $selectedSeats"
-            binding.availableSeats.text = "Available Seats: $availableSeats"
+            binding.selectedseats.text = "Selected Seats: $selected_count"
+            binding.availableSeats.text = "Available Seats: $available_count"
 
         }
 
@@ -82,9 +82,10 @@ class MovieDetail : AppCompatActivity() {
 
     }
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         val intent = Intent()
-        intent.putExtra("modifiedavailableSeats", available_count.toString())
+        intent.putExtra("modifiedAvailableSeats", available_count.toString())
         intent.putExtra("modifiedSelectedSeats", selected_count.toString())
         setResult(Activity.RESULT_OK, intent)
         super.onBackPressed()
