@@ -10,12 +10,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import stu72159.example.movieapp.Models.MovieData
-import stu72159.example.movieapp.UI.MovieDetail
+import stu72159.example.movieapp.UI.Screen2
 import com.example.movieapp.databinding.MovieItemBinding
 import kotlin.random.Random
 
-class MovieAdapter(private val movies: List<MovieData>, private val context: Context) :
-    RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+class AppAdapter(private val movies: List<MovieData>, private val context: Context) :
+    RecyclerView.Adapter<AppAdapter.ViewHolder>() {
 
     companion object {
         const val REQUEST_CODE_MOVIE_DETAIL = 1001
@@ -67,7 +67,7 @@ class MovieAdapter(private val movies: List<MovieData>, private val context: Con
                     itemposition = adapterPosition
 
                     Log.d("itempos: ", adapterPosition.toString() + " c")
-                    val intent = Intent(context, MovieDetail::class.java)
+                    val intent = Intent(context, Screen2::class.java)
                     intent.putExtra("moviename", movie.title)
                     intent.putExtra("image", movie.posterurl)
                     intent.putExtra("desc", movie.overview)

@@ -6,11 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.example.movieapp.R
-import com.example.movieapp.databinding.ActivityMovieDetailBinding
+import com.example.movieapp.databinding.ActivityScreen2Binding
 
-class MovieDetail : AppCompatActivity() {
-    lateinit var binding:ActivityMovieDetailBinding
+class Screen2 : AppCompatActivity() {
+    lateinit var binding:ActivityScreen2Binding
 
     private var moviename:String?=null
     private var postimg:String?=null
@@ -25,7 +24,7 @@ class MovieDetail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding= ActivityMovieDetailBinding.inflate(layoutInflater)
+        binding= ActivityScreen2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
         moviename=intent.getStringExtra("moviename")
@@ -47,7 +46,7 @@ class MovieDetail : AppCompatActivity() {
             }
             else
             {
-                Toast.makeText(this@MovieDetail, "No more seats available!", Toast.LENGTH_LONG).show()
+                Toast.makeText(this@Screen2, "No more seats available!", Toast.LENGTH_LONG).show()
             }
 
 
@@ -63,7 +62,7 @@ class MovieDetail : AppCompatActivity() {
             }
             else
             {
-                Toast.makeText(this@MovieDetail,"Click on PLUS icon to select seats",Toast.LENGTH_LONG).show()
+                Toast.makeText(this@Screen2,"Click on PLUS icon to select seats",Toast.LENGTH_LONG).show()
             }
             binding.selectedseats.text = "Selected Seats: $selected_count"
             binding.availableSeats.text = "Available Seats: $available_count"
@@ -72,7 +71,7 @@ class MovieDetail : AppCompatActivity() {
 
         binding.selectedseats.text=selectedSeats
         binding.availableSeats.text=availableSeats
-        Glide.with(this@MovieDetail)
+        Glide.with(this@Screen2)
             .load(postimg)
             .into(binding.posterimg
             )
@@ -87,7 +86,7 @@ class MovieDetail : AppCompatActivity() {
         val intent = Intent()
         intent.putExtra("modifiedAvailableSeats", available_count.toString())
         intent.putExtra("modifiedSelectedSeats", selected_count.toString())
-        setResult(Activity.RESULT_OK, intent)
+        setResult(RESULT_OK, intent)
         super.onBackPressed()
     }
 }

@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0B1A6A"
-    tools:context="stu72159.example.movieapp.UI.AllMovies">
+    tools:context="stu72159.example.movieapp.UI.Screen1">
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

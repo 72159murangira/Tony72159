@@ -15,11 +15,11 @@
         android:theme="@style/Theme.MovieApp"
         tools:targetApi="31">
         <activity
-            android:name="stu72159.example.movieapp.UI.MovieDetail"
+            android:name="stu72159.example.movieapp.UI.Screen2"
             android:exported="false"
             android:screenOrientation="portrait"/>
         <activity
-            android:name="stu72159.example.movieapp.UI.AllMovies"
+            android:name="stu72159.example.movieapp.UI.Screen1"
             android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>

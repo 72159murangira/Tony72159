@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:paddingHorizontal="10dp"
     android:background="#0B1A6A"
-    tools:context="stu72159.example.movieapp.UI.MovieDetail">
+    tools:context="stu72159.example.movieapp.UI.Screen2">
 
 
 

@@ -9,19 +9,19 @@ import android.util.Log
 import android.view.ViewGroup
 import android.widget.Button
 import stu72159.example.movieapp.Models.MovieData
-import stu72159.example.movieapp.MovieAdapter
-import stu72159.example.movieapp.MovieAdapter.Companion.itemposition
-import com.example.movieapp.databinding.ActivityAllMoviesBinding
+import stu72159.example.movieapp.AppAdapter
+import stu72159.example.movieapp.AppAdapter.Companion.itemposition
+import com.example.movieapp.databinding.ActivityScreen1Binding
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlin.random.Random
 
-class AllMovies : AppCompatActivity() {
-    lateinit var binding: ActivityAllMoviesBinding
+class Screen1 : AppCompatActivity() {
+    lateinit var binding: ActivityScreen1Binding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityAllMoviesBinding.inflate(layoutInflater)
+        binding = ActivityScreen1Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
         val crashButton = Button(this)
@@ -42,7 +42,7 @@ class AllMovies : AppCompatActivity() {
             movie.availableSeats = Random.nextInt(1, 16).toString()
         }
 
-        val adapter = MovieAdapter(movielist, this@AllMovies)
+        val adapter = AppAdapter(movielist, this@Screen1)
         binding.rvMovies.adapter = adapter
 
         Log.d("list--> ", "$movielist   c ")
@@ -61,7 +61,7 @@ class AllMovies : AppCompatActivity() {
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == MovieAdapter.REQUEST_CODE_MOVIE_DETAIL && resultCode == Activity.RESULT_OK) {
+        if (requestCode == AppAdapter.REQUEST_CODE_MOVIE_DETAIL && resultCode == Activity.RESULT_OK) {
             val modifiedAvailableSeats = data?.getStringExtra("modifiedAvailableSeats")
             val modifiedSelectedSeats = data?.getStringExtra("modifiedSelectedSeats")
 
@@ -70,7 +70,7 @@ class AllMovies : AppCompatActivity() {
             // Update the seat data for the corresponding movie item in your RecyclerView
             // You can access the ViewHolder of the clicked item using findViewHolderForAdapterPosition
             val viewHolder = binding.rvMovies.findViewHolderForAdapterPosition(itemposition)
-            if (viewHolder is MovieAdapter.ViewHolder) {
+            if (viewHolder is AppAdapter.ViewHolder) {
                 viewHolder.binding.availableSeats.text = "Available Seats: $modifiedAvailableSeats"
                 viewHolder.binding.selectedseat.text = "Selected Seats: $modifiedSelectedSeats"
             }
